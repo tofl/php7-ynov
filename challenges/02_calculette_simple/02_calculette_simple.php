@@ -41,6 +41,9 @@ switch ($calculation) {
         print $a * $b;
         break;
     case '/' :
+        if ($b == 0) {
+            die("Impossible de diviser par 0 !");
+        }
         print $a / $b;
         break;
     case '%' :
