@@ -153,7 +153,7 @@ if ($type == 'rating') {
                 <!-- BONUS Pagination -->
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="classement.html">&laquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="classement.php?page=1">&laquo;</a></li>
                         <?php
                             $nbPages = count($showsRanked)/10;
 
@@ -177,7 +177,7 @@ if ($type == 'rating') {
                                 echo '<li class="page-item' . $one . '"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
                                 echo '<li class="page-item' . $two . '"><a class="page-link" href="classement.php?page=2&type=' . $type . '">2</a></li>';
                                 echo '<li class="page-item' . $three . '"><a class="page-link" href="classement.php?page=3&type=' . $type . '">3</a></li>';
-                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.php">…</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
                             }
 
@@ -186,23 +186,23 @@ if ($type == 'rating') {
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=2&type=' . $type . '">2</a></li>';
                                 echo '<li class="page-item active"><a class="page-link" href="classement.php?page=3&type=' . $type . '">3</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=4&type=' . $type . '">4</a></li>';
-                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.php">…</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
                             }
 
                             if ($page > 3 AND $page < $nbPages - 2) {
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
-                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.php">…</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page - 1) . '&type=' . $type . '">' . ($page - 1) . '</a></li>';
                                 echo '<li class="page-item active"><a class="page-link" href="classement.php?page=' . $page . '&type=' . $type . '">' . $page . '</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page + 1) . '&type=' . $type . '">' . ($page + 1) . '</a></li>';
-                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.php">…</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
                             }
 
                             if ($page == $nbPages - 2) {
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
-                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.php">…</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($nbPages - 3) . '&type=' . $type . '">' . ($nbPages - 3) . '</a></li>';
                                 echo '<li class="page-item active"><a class="page-link" href="classement.php?page=' . ($nbPages - 2) . '&type=' . $type . '">' . ($nbPages - 2) . '</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($nbPages - 1) . '&type=' . $type . '">' . ($nbPages - 1) . '</a></li>';
@@ -212,7 +212,7 @@ if ($type == 'rating') {
                             if ($page > $nbPages - 2) {
 
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
-                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.php">…</a></li>';
 
                                 if ($page != $nbPages) {
                                     echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page - 1) . '&type=' . $type . '">' . ($page - 1) . '</a></li>';
@@ -224,7 +224,7 @@ if ($type == 'rating') {
                                 }
                             }
                         ?>
-                        <li class="page-item"><a class="page-link" href="classement.html">&raquo;</a></li>
+                        <li class="page-item"><a class="page-link" href="classement.php?page=<?= $nbPages; ?>">&raquo;</a></li>
                     </ul>
                 </nav>
             </div>
