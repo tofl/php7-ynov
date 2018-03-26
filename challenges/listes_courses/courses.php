@@ -26,21 +26,32 @@ $db = new PDO('mysql:host=localhost;dbname=php', 'root', 'root');
         <h2>Choses à acheter</h2>
 
         <!-- Si la liste de course est vide -->
-        <div class="alert alert-success" role="alert">
-            La liste de course est vide. 👌
-        </div>
+        <?php
+            $count = $db->prepare('SELECT COUNT(*) FROM shopping_list');
+            $count->execute();
+
+            $nbArticles = $count->fetchColumn();
+
+            if ($nbArticles == 0) {
+        ?>
+                <div class="alert alert-success" role="alert">
+                    La liste de course est vide. 👌
+                </div>
+        <?php
+            }
+        ?>
 
         <!-- Sinon on affiche les produits de la liste de courses, triée par categorie puis nom de produit -->
         <table class="table">
             <?php
-                $query = $db->query('SELECT * FROM shopping_list');
+                $query = $db->query('SELECT * FROM shopping_list ORDER BY category, product');
 
                 while ($result = $query->fetch()) {
             ?>
                 <tr>
                     <th width="250px"><?= utf8_encode($result['category']); ?></th>
                     <td><?= utf8_encode($result['product']); ?></td>
-                    <td style="text-align: right"><a href="#">Supprimer</a>
+                    <td style="text-align: right"><a href="delete_product.php?id=<?= $result['id']; ?>">Supprimer</a>
                     <td>
                 </tr>
             <?php
@@ -51,10 +62,10 @@ $db = new PDO('mysql:host=localhost;dbname=php', 'root', 'root');
         <hr />
 
         <h2>Ajouter un produit</h2>
-        <form action="courses.html" method="POST">
+        <form action="add_product.php" method="POST">
             <div class="form-group">
                 <label for="product">Produit</label>
-                <input name="product" type="product" class="form-control" id="product" placeholder="Nom du produit">
+                <input name="product" type="product" class="form-control" id="product" placeholder="Nom du produit" required>
             </div>
             <div class="form-group">
                 <label for="category">Catégorie</label>
