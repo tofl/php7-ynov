@@ -208,6 +208,21 @@ if ($type == 'rating') {
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($nbPages - 1) . '&type=' . $type . '">' . ($nbPages - 1) . '</a></li>';
                                 echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
                             }
+
+                            if ($page > $nbPages - 2) {
+
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+
+                                if ($page != $nbPages) {
+                                    echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page - 1) . '&type=' . $type . '">' . ($page - 1) . '</a></li>';
+                                    echo '<li class="page-item active"><a class="page-link" href="classement.php?page=' . $page . '&type=' . $type . '">' . $page . '</a></li>';
+                                    echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page + 1) . '&type=' . $type . '">' . ($page + 1) . '</a></li>';
+                                } else {
+                                    echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page - 1) . '&type=' . $type . '">' . ($page - 1) . '</a></li>';
+                                    echo '<li class="page-item active"><a class="page-link" href="classement.php?page=' . $page . '&type=' . $type . '">' . $page . '</a></li>';
+                                }
+                            }
                         ?>
                         <li class="page-item"><a class="page-link" href="classement.html">&raquo;</a></li>
                     </ul>
