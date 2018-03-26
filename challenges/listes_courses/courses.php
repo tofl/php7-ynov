@@ -1,3 +1,6 @@
+<?php
+$db = new PDO('mysql:host=localhost;dbname=php', 'root', 'root');
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,31 +32,20 @@
 
         <!-- Sinon on affiche les produits de la liste de courses, triée par categorie puis nom de produit -->
         <table class="table">
-            <tr>
-                <th width="250px">Animaux</th>
-                <td>Croquettes</td>
-                <td style="text-align: right"><a href="#">Supprimer</a><td>
-            </tr>
-            <tr>
-                <th>Animaux</th>
-                <td>Litière 10kilos</td>
-                <td style="text-align: right"><a href="#">Supprimer</a><td>
-            </tr>
-            <tr>
-                <th>Bébé</th>
-                <td>Couches</td>
-                <td style="text-align: right"><a href="#">Supprimer</a><td>
-            </tr>
-            <tr>
-                <th>Bébé</th>
-                <td>Petit pots légumes</td>
-                <td style="text-align: right"><a href="#">Supprimer</a><td>
-            </tr>
-            <tr>
-                <th>Entretien et nettoyage</th>
-                <td>Liquide vaisselle</td>
-                <td style="text-align: right"><a href="#">Supprimer</a><td>
-            </tr>
+            <?php
+                $query = $db->query('SELECT * FROM shopping_list');
+
+                while ($result = $query->fetch()) {
+            ?>
+                <tr>
+                    <th width="250px"><?= utf8_encode($result['category']); ?></th>
+                    <td><?= utf8_encode($result['product']); ?></td>
+                    <td style="text-align: right"><a href="#">Supprimer</a>
+                    <td>
+                </tr>
+            <?php
+                }
+            ?>
         </table>
 
         <hr />
