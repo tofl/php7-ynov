@@ -20,7 +20,7 @@
 <body>
 <!-- Barre de navigation -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="index.html">AlphaSeries</a>
+    <a class="navbar-brand" href="index.php">AlphaSeries</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbar-menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -29,17 +29,17 @@
     <div class="collapse navbar-collapse" id="navbar-menu">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-home"></i> Accueil
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="classement.html">
+                <a class="nav-link" href="classement.php">
                     <i class="fas fa-trophy"></i> Classement
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="serie.html">
+                <a class="nav-link" href="serie.php">
                     <i class="fas fa-random"></i> Une série aléatoire
                 </a>
             </li>

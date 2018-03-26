@@ -1,5 +1,7 @@
 <?php
 require_once('src/shows.php');
+
+$random = array_rand($shows);
 ?>
 <!doctype html>
 <html lang="fr">
@@ -61,7 +63,7 @@ require_once('src/shows.php');
 <main role="main">
     <!-- Header -->
     <div class="jumbotron" style="position: relative">
-        <div class="jumbotron-background" style="background-image: url('https://www.betaseries.com/images/fonds/banner/159_1451844073.jpg');"></div>
+        <div class="jumbotron-background" style="background-image: url(<?= $shows[$random]['images']['banner']; ?>);"></div>
         <div class="container">
             <h1 class="display-3">AlphaSeries</h1>
             <p>Retrouvez les meilleures séries TV !</p>

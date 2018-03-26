@@ -1,7 +1,6 @@
 <?php
-/*
- * PAGE NON TERMINÉE
- */
+
+require_once('src/shows.php');
 
 if (!isset($_GET['page']) OR empty($_GET['page'])) {
     $page = 1;
@@ -15,6 +14,12 @@ if (!isset($_GET['type']) OR empty($_GET['type'])) {
     $type = 'rating';
 } else {
     $type = $_GET['type'];
+}
+
+if ($type == 'rating') {
+    $showsRanked = rankingRating($shows);
+} else {
+    $showsRanked = rankingPopularity($shows);
 }
 ?>
 
@@ -59,7 +64,7 @@ if (!isset($_GET['type']) OR empty($_GET['type'])) {
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="serie.php">
+                <a class="nav-link" href="aleatoire.php">
                     <i class="fas fa-random"></i> Une série aléatoire
                 </a>
             </li>
@@ -123,160 +128,25 @@ if (!isset($_GET['type']) OR empty($_GET['type'])) {
                     </tr>
                     </thead>
                     <tbody>
+
+                    <?php
+                        for ($i = ($page - 1) * 10; $i < ($page - 1) * 10 + 10; $i++) {
+                            $serie = $showsRanked[$i];
+                    ?>
                     <tr>
-                        <th scope="row">1</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
+                        <th scope="row"><?= $i+1; ?></th>
+                        <td><a href="serie.php?serie=<?= $serie['slug'] ?>"><?= $serie['name'] ?></a></td>
                         <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
+                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="<?= round($serie['statistics']['rating'], 2); ?>">
+                                        <?php stars($serie['statistics']['rating']); ?>
                                     </span>
                         </td>
-                        <td>250 000</td>
+                        <td><?= number_format($serie['statistics']['popularity'], 0, ',', ' '); ?></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>250 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>240 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>230 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>220 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>210 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>200 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>190 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>180 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>250 000</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">10</th>
-                        <td><a href="serie.html">Game of Thrones</a></td>
-                        <td>
-                                    <span class="stars text-info" data-toggle="tooltip" data-placement="top" title="4.80">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half"></i>
-                                    </span>
-                        </td>
-                        <td>170 000</td>
-                    </tr>
+                    <?php
+                        }
+                    ?>
+
                     </tbody>
                 </table>
 
@@ -284,11 +154,61 @@ if (!isset($_GET['type']) OR empty($_GET['type'])) {
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="classement.html">&laquo;</a></li>
-                        <li class="page-item active"><a class="page-link" href="classement.html">1</a></li>
-                        <li class="page-item"><a class="page-link" href="classement.html">2</a></li>
-                        <li class="page-item"><a class="page-link" href="classement.html">3</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>
-                        <li class="page-item"><a class="page-link" href="classement.html">99</a></li>
+                        <?php
+                            $nbPages = count($showsRanked)/10;
+
+                            if ($page < 3) {
+                                if ($page == 1) {
+                                    $one = ' active';
+                                    $two = '';
+                                    $three = '';
+                                }
+                                if ($page == 2) {
+                                    $one = '';
+                                    $two = ' active';
+                                    $three = '';
+                                }
+                                if ($page == 3) {
+                                    $one = '';
+                                    $two = '';
+                                    $three = ' active';
+                                }
+
+                                echo '<li class="page-item' . $one . '"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
+                                echo '<li class="page-item' . $two . '"><a class="page-link" href="classement.php?page=2&type=' . $type . '">2</a></li>';
+                                echo '<li class="page-item' . $three . '"><a class="page-link" href="classement.php?page=3&type=' . $type . '">3</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
+                            }
+
+                            if ($page == 3) {
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=2&type=' . $type . '">2</a></li>';
+                                echo '<li class="page-item active"><a class="page-link" href="classement.php?page=3&type=' . $type . '">3</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=4&type=' . $type . '">4</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
+                            }
+
+                            if ($page > 3 AND $page < $nbPages - 2) {
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page - 1) . '&type=' . $type . '">' . ($page - 1) . '</a></li>';
+                                echo '<li class="page-item active"><a class="page-link" href="classement.php?page=' . $page . '&type=' . $type . '">' . $page . '</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($page + 1) . '&type=' . $type . '">' . ($page + 1) . '</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
+                            }
+
+                            if ($page == $nbPages - 2) {
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=1&type=' . $type . '">1</a></li>';
+                                echo '<li class="page-item disabled"><a class="page-link" href="classement.html">…</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($nbPages - 3) . '&type=' . $type . '">' . ($nbPages - 3) . '</a></li>';
+                                echo '<li class="page-item active"><a class="page-link" href="classement.php?page=' . ($nbPages - 2) . '&type=' . $type . '">' . ($nbPages - 2) . '</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . ($nbPages - 1) . '&type=' . $type . '">' . ($nbPages - 1) . '</a></li>';
+                                echo '<li class="page-item"><a class="page-link" href="classement.php?page=' . $nbPages . '&type=' . $type . '">' . $nbPages . '</a></li>';
+                            }
+                        ?>
                         <li class="page-item"><a class="page-link" href="classement.html">&raquo;</a></li>
                     </ul>
                 </nav>
