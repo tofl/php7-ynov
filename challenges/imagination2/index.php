@@ -11,7 +11,7 @@
             <h1>Bienvenue sur mon site !</h1>
             <?php
                 if (empty($_SESSION['session_id'])) {
-                    echo '<p>Vous n\'êtes pas connecté -> <a href="">Se connecter</a></p>';
+                    echo '<p>Vous n\'êtes pas connecté -> <a href="login.php">Se connecter</a></p>';
                 } else {
                     echo '<p>Bienvenue</p>';
                 }

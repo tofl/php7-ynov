@@ -12,3 +12,10 @@ body {
     margin: auto;
     padding-top: 30px;
 }
+
+a {
+    color: red;
+    border-bottom: 2px solid red;
+    text-decoration: none;
+    font-weight: bold;
+}
