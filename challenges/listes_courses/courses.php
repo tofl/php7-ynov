@@ -49,8 +49,8 @@ $db = new PDO('mysql:host=localhost;dbname=php', 'root', 'root');
                 while ($result = $query->fetch()) {
             ?>
                 <tr>
-                    <th width="250px"><?= utf8_encode($result['category']); ?></th>
-                    <td><?= utf8_encode($result['product']); ?></td>
+                    <th width="250px"><?= $result['category']; ?></th>
+                    <td><?= $result['product']; ?></td>
                     <td style="text-align: right"><a href="delete_product.php?id=<?= $result['id']; ?>">Supprimer</a>
                     <td>
                 </tr>
