@@ -16,7 +16,7 @@ if (!empty($_SESSION['session_id'])) {
 
     <body>
         <h1>Créer une équipe</h1>
-        <form action="db_add_team.php" method="post" enctype="multipart/form-data">
+        <form action="scripts/db_add_team.php" method="post" enctype="multipart/form-data">
             <label for="name">Nom de l'équipe : </label><input type="text" name="name" required /><br />
             <label for="phrase">Citation : </label><input type="text" name="phrase" /><br />
             <label for="image">Image de l'équipe : </label><input type="file" name="image" /><br />

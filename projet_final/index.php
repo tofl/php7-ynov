@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $isLoggedIn = false;
 
 if (!empty($_SESSION['session_id'])) {
@@ -24,6 +25,7 @@ if (!empty($_SESSION['session_id'])) {
                 <li><a href="team_ranking.php">Classement des équipes</a></li>
                 <li><a href="players_ranking.php">Classement des joueurs</a></li>
                 <li><a href="new_game.php">Nouvelle partie</a></li>
+                <li><a href="scripts/logout.php">Se déconnecter</a></li>
             <?php
                 }
                 else {
