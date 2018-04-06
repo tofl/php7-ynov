@@ -1,3 +1,3 @@
-# Lebowski Tournaments
+# Projet final
 
-© Louise Baulan & Thomas 'Tom' Michael Flitterman 
+[Repo Github](https://github.com/tofl/Lebowski)
